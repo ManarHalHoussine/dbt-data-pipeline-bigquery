@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer data from raw_customers"
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: first_name
+        description: "Customer first name"
+
+      - name: last_name
+        description: "Customer last name"
+
+  - name: stg_orders
+    description: "Cleaned order data from raw_orders"
+    columns:
+      - name: order_id
+        description: "Primary key of the order"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Foreign key to the customer"
+
+      - name: order_date
+        description: "Date of the order"
+
+      - name: status
+        description: "Order status"
+
+  - name: customers
+    description: "Final customer model with order metrics"
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: first_name
+        description: "Customer first name"
+
+      - name: last_name
+        description: "Customer last name"
+
+      - name: first_order
+        description: "Date of the first order for the customer"
+
+      - name: recent_order
+        description: "Date of the most recent order for the customer"
+
+      - name: number_orders
+        description: "Total number of orders made by the customer"
